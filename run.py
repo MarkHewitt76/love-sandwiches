@@ -52,8 +52,21 @@ def validate_data(values):
     except ValueError as e:
         print(f"Invalid data: {e}. Please try again.\n")
         return False
-    
+
     return True
 
 
+def update_sales_worksheet(data_in):
+    """
+    Update sales worksheet:
+    Add new row with the list data provided.
+    """
+    print("Updating sales worksheet...\n")
+    sales_worksheet = SHEET.worksheet("sales")
+    sales_worksheet.append_row(data_in)
+    print("Sales worksheet updated successfully.\n")
+
+
 data = get_sales_data()
+sales_data = [int(num) for num in data]
+update_sales_worksheet(sales_data)
